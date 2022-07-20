@@ -69,14 +69,14 @@ app.get("/json", (req, res) => {
       const sortedAbsen = allAbsen.sort(function (a, b) {
         return a.peserta === b.peserta ? 0 : a.peserta < b.peserta ? -1 : 1;
       });
-      return res.json(sortedAbsen );
+      return res.status(200).json(sortedAbsen );
     }
 
     const allAbsen = await Absen.find({});
     const sortedAbsen = allAbsen.sort(function (a, b) {
       return a.peserta === b.peserta ? 0 : a.peserta < b.peserta ? -1 : 1;
     });
-    res.json(sortedAbsen)
+    res.status(200).json(sortedAbsen)
 });
 
 // api
