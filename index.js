@@ -51,9 +51,25 @@ app.get(
     const sortedAbsen = allAbsen.sort(function (a, b) {
       return a.peserta === b.peserta ? 0 : a.peserta < b.peserta ? -1 : 1;
     });
+    console.log(JSON.stringify(sortedAbsen));
     return res.render("homePage", { allAbsen: sortedAbsen });
   })
 );
+
+app.get("/test", (req, res) => {
+  res.json([
+    {
+      _id: "62d7f025383c41bfa773c8fc",
+      peserta: "Zayyan",
+      sesi: 1,
+      time: "8:08:05 PM",
+      tgl: "20",
+      bln: "6",
+      thn: "2022",
+      __v: 0,
+    },
+  ]);
+});
 
 // api
 app.post(
