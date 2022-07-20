@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build-css": "tailwindcss -i ./index.css -o ./public/style/app.css --watch",
-    "start": "node index.js"
+    "start": "node index.js",
+    "push-heroku": "git push heroku main"
   },
   "keywords": [],
   "author": "",
