@@ -82,6 +82,28 @@ app.get(
   })
 );
 
+//delete
+app.delete(
+  "/",
+  catchAsync(async (req, res) => {
+    const filterCount = Object.keys(req.query).length;
+    // check if there's a filter query
+    if (filterCount) {
+      const { tgl, bln, thn, sesi } = req.query;
+      const filter = {};
+      tgl ? (filter.tgl = tgl) : null;
+      bln ? (filter.bln = bln) : null;
+      thn ? (filter.thn = thn) : null;
+      sesi ? (filter.sesi = sesi) : null;
+      const deleteAbsen = await Absen.deleteMany(filter);
+      return res.status(200).json(deleteAbsen);
+    }
+
+    const deletedAbsen = await Absen.deleteMany({});
+    res.status(200).json(deletedAbsen);
+  })
+);
+
 // api
 app.post(
   "/api/newAbsen",
