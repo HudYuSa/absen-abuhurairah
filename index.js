@@ -55,7 +55,7 @@ app.get(
   })
 );
 
-app.get("/json", (req, res) => {
+app.get( catchAsync(async "/json", (req, res) => {
       const filterCount = Object.keys(req.query).length;
     // check if there's a filter query
     if (filterCount) {
@@ -77,7 +77,7 @@ app.get("/json", (req, res) => {
       return a.peserta === b.peserta ? 0 : a.peserta < b.peserta ? -1 : 1;
     });
     res.status(200).json(sortedAbsen)
-});
+}));
 
 // api
 app.post(
