@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Absensi</title>
+    <link rel="stylesheet" href="./style/app.css" />
+  </head>
+  <body class="flex items-center justify-center w-screen">
+    <main class="w-[80%] mt-[4rem] text-center">
+      <form action="/" method="post">
+        <input
+          class="number-input"
+          type="number"
+          placeholder="tgl"
+          maxlength="2"
+          name="tgl"
+          oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+        />
+        <input
+          class="number-input"
+          type="number"
+          placeholder="bln"
+          maxlength="2"
+          name="bln"
+          oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+        />
+        <input
+          class="number-input"
+          type="number"
+          placeholder="thn"
+          maxlength="4"
+          name="thn"
+          oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+        />
+        <input
+          class="number-input"
+          type="number"
+          placeholder="sesi"
+          maxlength="1"
+          name="sesi"
+          oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+        />
+        <button
+          class="py-1 px-4 text-[#373737] text-[1.5rem] bg-[#D9D9D9] outline-none indent-1 text-center ml-5 rounded-xl"
+        >
+          CARI
+        </button>
+      </form>
+
+      <div class="list-peserta mt-5">
+        <% allAbsen.forEach(absen=>{%>
+        <div
+          class="peserta flex items-center bg-[#D9D9D9] p-2 px-4 rounded-md my-1"
+        >
+          <h3 class="text-[1.25rem] font-medium"><%= absen.peserta %></h3>
+          <h3 class="text-[1rem] ml-4">
+            <%= `${absen.tgl}/${absen.bln}/${absen.thn}` %>
+          </h3>
+          <h3 class="text-[1.25rem] font-medium ml-auto mr-4">
+            sesi:<%= absen.sesi %>
+          </h3>
+          <h3 class="text-[1.25rem] font-medium"><%= absen.time %></h3>
+        </div>
+        <%}) %>
+      </div>
+    </main>
+    <script>
+      const form = document.querySelector("form");
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(e.target);
+        const formProps = Object.fromEntries(formData);
+        const { tgl, bln, thn, sesi } = formProps;
+
+        window.location.href = `/?tgl=${tgl}&bln=${bln}&thn=${thn}&sesi=${sesi}&apiKey=m51Lz8J8PH5`;
+      });
+    </script>
+  </body>
+</html>
