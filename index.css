@@ -31,10 +31,9 @@ section {
   outline-none 
   text-center 
   mx-2
-  w-12
   text-[1rem]
-  /* xxsm:w-16
-  xxsm:text-[1.25rem] */
+  xxsm:text-[1.25rem] 
+  w-[25%]
   xsm:w-[25%]
   xsm:text-[2rem]
   sm:w-16

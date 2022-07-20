@@ -629,7 +629,7 @@ section {
 .number-input {
   margin-left: 0.5rem;
   margin-right: 0.5rem;
-  width: 3rem;
+  width: 25%;
   --tw-bg-opacity: 1;
   background-color: rgb(217 217 217 / var(--tw-bg-opacity));
   padding: 0.25rem;
@@ -637,6 +637,12 @@ section {
   font-size: 1rem;
   outline: 2px solid transparent;
   outline-offset: 2px;
+}
+
+@media (min-width: 320px) {
+  .number-input {
+    font-size: 1.25rem;
+  }
 }
 
 @media (min-width: 480px) {
