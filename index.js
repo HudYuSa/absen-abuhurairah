@@ -31,32 +31,32 @@ app.get(
   "/",
   catchAsync(async (req, res, next) => {
     // check if the request has an api key
-    const apiKey = req.query.apiKey;
+    // const apiKey = req.query.apiKey;
 
-    if (apiKey === process.env.API_KEY) {
-      const filterCount = Object.keys(req.query).length;
-      // check if there's a filter query
-      if (filterCount) {
-        const { tgl, bln, thn, sesi } = req.query;
-        const filter = {};
-        tgl ? (filter.tgl = tgl) : null;
-        bln ? (filter.bln = bln) : null;
-        thn ? (filter.thn = thn) : null;
-        sesi ? (filter.sesi = sesi) : null;
-        const allAbsen = await Absen.find(filter);
-        const sortedAbsen = allAbsen.sort(function (a, b) {
-          return a.peserta === b.peserta ? 0 : a.peserta < b.peserta ? -1 : 1;
-        });
-        return res.render("homePage", { allAbsen: sortedAbsen });
-      }
-
-      const allAbsen = await Absen.find({});
+    // if (apiKey === process.env.API_KEY) {
+    const filterCount = Object.keys(req.query).length;
+    // check if there's a filter query
+    if (filterCount) {
+      const { tgl, bln, thn, sesi } = req.query;
+      const filter = {};
+      tgl ? (filter.tgl = tgl) : null;
+      bln ? (filter.bln = bln) : null;
+      thn ? (filter.thn = thn) : null;
+      sesi ? (filter.sesi = sesi) : null;
+      const allAbsen = await Absen.find(filter);
       const sortedAbsen = allAbsen.sort(function (a, b) {
         return a.peserta === b.peserta ? 0 : a.peserta < b.peserta ? -1 : 1;
       });
       return res.render("homePage", { allAbsen: sortedAbsen });
     }
-    next(new Error("you're not authorized"));
+
+    const allAbsen = await Absen.find({});
+    const sortedAbsen = allAbsen.sort(function (a, b) {
+      return a.peserta === b.peserta ? 0 : a.peserta < b.peserta ? -1 : 1;
+    });
+    return res.render("homePage", { allAbsen: sortedAbsen });
+    // }
+    // next(new Error("you're not authorized"));
   })
 );
 
