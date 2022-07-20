@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build-css": "tailwindcss -i ./index.css -o ./public/style/app.css --watch"
+    "build-css": "tailwindcss -i ./index.css -o ./public/style/app.css --watch",
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "",
