@@ -55,8 +55,10 @@ app.get(
   })
 );
 
-app.get( catchAsync(async "/json", (req, res) => {
-      const filterCount = Object.keys(req.query).length;
+app.get(
+  "/json",
+  catchAsync(async (req, res) => {
+    const filterCount = Object.keys(req.query).length;
     // check if there's a filter query
     if (filterCount) {
       const { tgl, bln, thn, sesi } = req.query;
@@ -69,15 +71,16 @@ app.get( catchAsync(async "/json", (req, res) => {
       const sortedAbsen = allAbsen.sort(function (a, b) {
         return a.peserta === b.peserta ? 0 : a.peserta < b.peserta ? -1 : 1;
       });
-      return res.status(200).json(sortedAbsen );
+      return res.status(200).json(sortedAbsen);
     }
 
     const allAbsen = await Absen.find({});
     const sortedAbsen = allAbsen.sort(function (a, b) {
       return a.peserta === b.peserta ? 0 : a.peserta < b.peserta ? -1 : 1;
     });
-    res.status(200).json(sortedAbsen)
-}));
+    res.status(200).json(sortedAbsen);
+  })
+);
 
 // api
 app.post(
