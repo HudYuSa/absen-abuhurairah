@@ -14,7 +14,8 @@ thn : untuk tahun specific,
 sesi : untuk sesi specific,
 }
 
-querynya bisa digunakan untuk get ataupun delete data 
+querynya bisa digunakan untuk get ataupun delete data
+tambahan query untuk delete : id (dari objectId) 
 
 article cara memasukkan data bentuk json ke google sheet :https://apipheny.io/import-json-google-sheets/
 data yang dimasukkan ke function di google sheetnya langsung aja query, tidak perlu menambahkan parameter query di function importJSON nya 
