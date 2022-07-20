@@ -17,7 +17,7 @@ sesi : untuk sesi specific,
 querynya bisa digunakan untuk get ataupun delete data 
 
 article cara memasukkan data bentuk json ke google sheet :https://apipheny.io/import-json-google-sheets/
-data yang dimasukkan ke function di google sheetnya langsung aja query, tidak perlu menambahkan option di function importJSON nya 
+data yang dimasukkan ke function di google sheetnya langsung aja query, tidak perlu menambahkan parameter query di function importJSON nya 
 
 route untuk tambah absen : https://absenustad.herokuapp.com/api/newAbsen?apiKey=apikey
 
