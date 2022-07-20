@@ -51,154 +51,32 @@ app.get(
     const sortedAbsen = allAbsen.sort(function (a, b) {
       return a.peserta === b.peserta ? 0 : a.peserta < b.peserta ? -1 : 1;
     });
-    console.log(JSON.stringify(sortedAbsen));
     return res.render("homePage", { allAbsen: sortedAbsen });
   })
 );
 
-app.get("/test", (req, res) => {
-  res.json([
-    {
-      _id: "62d7f025383c41bfa773c8fc",
-      peserta: "Zayyan",
-      sesi: 1,
-      time: "8:08:05 PM",
-      tgl: "20",
-      bln: "6",
-      thn: "2022",
-      __v: 0,
-    },
-    {
-      _id: "62d7f1e6383c41bfa773c900",
-      peserta: "Zayyan",
-      sesi: 16,
-      time: "8:15:33 PM",
-      tgl: "20",
-      bln: "6",
-      thn: "2022",
-      __v: 0,
-    },
-    {
-      _id: "62d7ef46383c41bfa773c8f2",
-      peserta: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-      sesi: 3,
-      time: "8:04:22 PM",
-      tgl: "20",
-      bln: "6",
-      thn: "2022",
-      __v: 0,
-    },
-    {
-      _id: "62d7e3be66b9d639394f82e0",
-      peserta: "hudya",
-      sesi: 1,
-      time: "7:15:09 PM",
-      tgl: "20",
-      bln: "6",
-      thn: "2022",
-      __v: 0,
-    },
-    {
-      _id: "62d7e3f466b9d639394f82e5",
-      peserta: "hudya",
-      sesi: 2,
-      time: "7:16:04 PM",
-      tgl: "20",
-      bln: "6",
-      thn: "2022",
-      __v: 0,
-    },
-    {
-      _id: "62d7e72e66b9d639394f82ea",
-      peserta: "hudya",
-      sesi: 3,
-      time: "7:29:49 PM",
-      tgl: "20",
-      bln: "6",
-      thn: "2022",
-      __v: 0,
-    },
-    {
-      _id: "62d7e06766b9d639394f82c6",
-      peserta: "peserta 1",
-      sesi: 2,
-      time: "7:00:55 PM",
-      tgl: "20",
-      bln: "6",
-      thn: "2022",
-      __v: 0,
-    },
-    {
-      _id: "62d7e06966b9d639394f82c9",
-      peserta: "peserta 2",
-      sesi: 2,
-      time: "7:00:57 PM",
-      tgl: "20",
-      bln: "6",
-      thn: "2022",
-      __v: 0,
-    },
-    {
-      _id: "62d7e06d66b9d639394f82cc",
-      peserta: "peserta 3",
-      sesi: 2,
-      time: "7:01:01 PM",
-      tgl: "20",
-      bln: "6",
-      thn: "2022",
-      __v: 0,
-    },
-    {
-      _id: "62d7e07066b9d639394f82cf",
-      peserta: "peserta 4",
-      sesi: 2,
-      time: "7:01:04 PM",
-      tgl: "20",
-      bln: "6",
-      thn: "2022",
-      __v: 0,
-    },
-    {
-      _id: "62d7e07266b9d639394f82d2",
-      peserta: "peserta 5",
-      sesi: 2,
-      time: "7:01:06 PM",
-      tgl: "20",
-      bln: "6",
-      thn: "2022",
-      __v: 0,
-    },
-    {
-      _id: "62d7e07466b9d639394f82d5",
-      peserta: "peserta 6",
-      sesi: 2,
-      time: "7:01:08 PM",
-      tgl: "20",
-      bln: "6",
-      thn: "2022",
-      __v: 0,
-    },
-    {
-      _id: "62d7e07966b9d639394f82d8",
-      peserta: "peserta 7",
-      sesi: 2,
-      time: "7:01:13 PM",
-      tgl: "20",
-      bln: "6",
-      thn: "2022",
-      __v: 0,
-    },
-    {
-      _id: "62d7e03166b9d639394f82c1",
-      peserta: "ricky",
-      sesi: 2,
-      time: "7:00:01 PM",
-      tgl: "20",
-      bln: "6",
-      thn: "2022",
-      __v: 0,
-    },
-  ]);
+app.get("/json", (req, res) => {
+      const filterCount = Object.keys(req.query).length;
+    // check if there's a filter query
+    if (filterCount) {
+      const { tgl, bln, thn, sesi } = req.query;
+      const filter = {};
+      tgl ? (filter.tgl = tgl) : null;
+      bln ? (filter.bln = bln) : null;
+      thn ? (filter.thn = thn) : null;
+      sesi ? (filter.sesi = sesi) : null;
+      const allAbsen = await Absen.find(filter);
+      const sortedAbsen = allAbsen.sort(function (a, b) {
+        return a.peserta === b.peserta ? 0 : a.peserta < b.peserta ? -1 : 1;
+      });
+      return res.json(sortedAbsen );
+    }
+
+    const allAbsen = await Absen.find({});
+    const sortedAbsen = allAbsen.sort(function (a, b) {
+      return a.peserta === b.peserta ? 0 : a.peserta < b.peserta ? -1 : 1;
+    });
+    res.json(sortedAbsen)
 });
 
 // api
