@@ -65,23 +65,10 @@ app.post(
   "/api/newAbsen",
   catchAsync(async (req, res) => {
     const { peserta, sesi } = req.body;
-    const time = new Date().getHours();
+    const time = new Date().toLocaleTimeString("ID");
     const tgl = new Date().getDate();
     const bln = new Date().getMonth();
     const thn = new Date().getFullYear();
-
-    function convertSeconds(seconds) {
-      var convert = function (x) {
-        return x < 10 ? "0" + x : x;
-      };
-      return (
-        convert(parseInt(seconds / (60 * 60))) +
-        ":" +
-        convert(parseInt((seconds / 60) % 60)) +
-        ":" +
-        convert(seconds % 60)
-      );
-    }
 
     const checkAbsen = await Absen.findOne({ tgl, bln, thn, peserta, sesi });
 
