@@ -1,6 +1,7 @@
 # absen-abuhurairah
 
-url website : https://absenustad.herokuapp.com/
+url website get: https://absenustad.herokuapp.com/
+url untuk delete: https://absenustad.herokuapp.com/?query
 
 link untuk mendapatkan data berbentuk json : https://absenustad.herokuapp.com/json
 
@@ -13,5 +14,10 @@ thn : untuk tahun specific,
 sesi : untuk sesi specific,
 }
 
+querynya bisa untuk delete data juga
+
 article cara memasukkan data bentuk json ke google sheet :https://apipheny.io/import-json-google-sheets/
 data yang dimasukkan ke function di google sheetnya langsung aja query, tidak menambahkan uption di function importJSON nya 
+
+route untuk tambah absen : https://absenustad.herokuapp.com/api/newAbsen?apiKey=apikey
+
