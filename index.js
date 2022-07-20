@@ -73,7 +73,7 @@ app.post(
     const checkAbsen = await Absen.findOne({ tgl, bln, thn, peserta, sesi });
 
     if (checkAbsen) {
-      return res.send("peserta sudah hadir");
+      return res.status(400).send("peserta sudah hadir");
     }
     const newAbsen = new Absen({
       peserta,
